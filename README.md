@@ -142,4 +142,3 @@ Includes:
 
 **Haris Bin Zahid**  
 Senior Software Engineer | Laravel Expert  
-Code Test for: DigitalTolk
