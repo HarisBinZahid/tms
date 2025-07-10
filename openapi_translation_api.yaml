@@ -1,0 +1,134 @@
+openapi: 3.0.0
+info:
+  title: Translation Management System API
+  version: 1.0.0
+  description: API for managing translations with multi-locale and tagging support.
+paths:
+  /api/translations:
+    get:
+      tags:
+      - Translations
+      summary: Get paginated list of translations
+      responses:
+        '200':
+          description: List of translations
+    post:
+      tags:
+      - Translations
+      summary: Create a new translation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              - locale
+              - content
+              properties:
+                key:
+                  type: string
+                locale:
+                  type: string
+                content:
+                  type: string
+                tag:
+                  type: string
+      responses:
+        '201':
+          description: Translation created
+  /api/translations/search:
+    get:
+      tags:
+      - Translations
+      summary: Search translations by key, tag, or content
+      parameters:
+      - name: key
+        in: query
+        schema:
+          type: string
+      - name: tag
+        in: query
+        schema:
+          type: string
+      - name: content
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Search results
+  /api/translations/export:
+    get:
+      tags:
+      - Translations
+      summary: Export translations by locale
+      parameters:
+      - name: locale
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Exported translations
+  /api/translations/{id}:
+    get:
+      tags:
+      - Translations
+      summary: Get a specific translation
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Translation details
+        '404':
+          description: Not Found
+    put:
+      tags:
+      - Translations
+      summary: Update a translation
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - content
+              properties:
+                content:
+                  type: string
+                tag:
+                  type: string
+      responses:
+        '200':
+          description: Translation updated
+        '404':
+          description: Not Found
+    delete:
+      tags:
+      - Translations
+      summary: Delete a translation
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Translation deleted
+        '404':
+          description: Not Found
