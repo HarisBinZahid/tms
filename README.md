@@ -21,8 +21,8 @@ This is a Laravel-based Translation Management System API to store, manage, and 
 ### 1. Clone & Install Dependencies
 
 ```bash
-git clone https://github.com/yourname/translation-api.git
-cd translation-api
+git clone https://github.com/HarisBinZahid/tms.git
+cd tms
 composer install
 ```
 
